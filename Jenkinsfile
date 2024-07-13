@@ -29,8 +29,12 @@ pipeline {
                 script {
                    echo 'building docker image...'
                    buildImage(env.IMAGE_NAME)
-                   dockerLogin()
-                   dockerPush(env.IMAGE_NAME)
+                   echo 'Logging into the docker repo'
+                   withCredentials([usernamePassword(credentialsId:'docker-hub-repo',passwordVariable: 'PASS',usernameVariable: 'USER')]){
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh "docker push env.IMAGE_NAME"
+                   }
+                   
                 }
             }
         }
