@@ -3,7 +3,7 @@
 library identifier: 'jenkins-shared-library@master', retriever: modernSCM(
     [$class: 'GitSCMSource',
      remote: 'https://github.com/ibrahim-osama-amin/Maven-multi-branch-pipeline.git',
-     credentialsId: 'gihub-credentials'
+     credentialsId: 'github-credentials'
     ]
 )
 
